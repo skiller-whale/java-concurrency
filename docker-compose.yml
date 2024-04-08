@@ -2,13 +2,13 @@ version: '3.7'
 services:
   java:
     profiles: ["java"] # exclude from unqualified "docker-compose up"
-    image: openjdk:21-jdk-bookworm
+    image: eclipse-temurin:21
     command: /bin/bash -c 'cd /app/exercises; exec /bin/bash'
     volumes:
       - ./exercises:/app/exercises
       - ./attendance_id:/app/sync/attendance_id
   sync:
-    image: ghcr.io/skiller-whale/learnersync:dockerize
+    image: ghcr.io/skiller-whale/learnersync
     network_mode: host
     environment:
       SERVER_URL: https://train.skillerwhale.com/
